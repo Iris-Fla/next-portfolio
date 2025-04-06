@@ -5,6 +5,7 @@ import "./globals.css";
 const kiwiMaru = Kiwi_Maru({
   weight: ["300", "400", "500"],
   display: "swap",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
