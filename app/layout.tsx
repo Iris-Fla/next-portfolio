@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Kiwi_Maru } from "next/font/google";
+import MainHeader from "@/components/mainheader/page";
+import MainFooter from "@/components/mainfooter/page";
+import { Toaster }from "@/components/ui/sonner";
 import "./globals.css";
 
 const kiwiMaru = Kiwi_Maru({
@@ -23,7 +26,12 @@ export default function RootLayout({
       <body
         className={kiwiMaru.className}
       >
+        <MainHeader />
+        <main>
         {children}
+        </main>
+        <Toaster />
+        <MainFooter />
       </body>
     </html>
   );
