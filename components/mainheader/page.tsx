@@ -1,5 +1,5 @@
 "use client";
-
+import NavItem from "./navitems";
 import Link from "next/link";
 
 export default function MainHeader() {
@@ -17,12 +17,10 @@ export default function MainHeader() {
 
                     {/* デスクトップナビゲーション - md以上で表示 */}
                     <nav className="flex items-center space-x-6">
-                        <Link href="/profile" className="font-medium text-lime-900 hover:text-gray-800 transition-colors duration-300 hover:underline hover:decoration-4 decoration-lime-900 underline-offset-8">
-                            Profile
-                        </Link>
-                        <p className="font-medium text-lime-900 hover:text-gray-800 transition-colors duration-300">
-                            Blog(Creating...)
-                        </p>
+                        <NavItem href="/profile" label="Profile" />
+                        <NavItem href="/blog" label="Blog(工事中)" disabled/>
+                        <NavItem href="/works" label="Works(工事中)" disabled/>
+                        <NavItem href="/contact" label="Contact(工事中)" />
                     </nav>
                 </div>
             </div>
