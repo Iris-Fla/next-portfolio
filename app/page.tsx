@@ -1,5 +1,5 @@
 "use client";
-import { useEffect , useState} from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import PageMotion from "@/components/pagemotion/page";
 import Link from "next/link";
@@ -19,30 +19,54 @@ export default function Home() {
     "ここまでのテキストしか用意していません",
     "みてくれてありがとう～",
   ];
-  
-  
+
+
   useEffect(() => {
     const interval = setInterval(() => {
       // 現在のインデックスのメッセージを使用
       const message = messages[currentIndex];
-      
+
       // トーストを表示
       toast(message, {
         duration: 7000,
         position: "bottom-center",
-        icon:"💚",
+        icon: "💚",
       });
-      
+
       // 次のインデックスに更新（循環させる）
       setCurrentIndex((prevIndex) => (prevIndex + 1) % messages.length);
     }, 10000);
-    
+
     // クリーンアップ関数でintervalをクリア
     return () => clearInterval(interval);
   }, [currentIndex, messages]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
+    <div className="flex flex-col items-center justify-center min-h-205 text-center px-4 relative">
+      {/* 上部SVG装飾 */}
+      <div className="absolute top-0 left-0 w-full flex justify-center md:justify-between pointer-events-none z-0">
+        {/* 左側（md以上で表示） */}
+        <img
+          src="/lamp.svg"
+          alt=""
+          className="h-auto hidden lg:block lg:w-[50%]"
+          aria-hidden="true"
+        />
+        {/* 中央（sm以下で表示） */}
+        <img
+          src="/lamp.svg"
+          alt=""
+          className="h-auto mt-6 block lg:hidden"
+          aria-hidden="true"
+        />
+        {/* 右側（md以上で表示） */}
+        <img
+          src="/lamp.svg"
+          alt=""
+          className="h-auto hidden lg:block lg:w-[50%] scale-x-[-1]"
+          aria-hidden="true"
+        />
+      </div>
       <PageMotion>
         <Link href="/profile">
           <motion.div
@@ -60,13 +84,13 @@ export default function Home() {
             <Image src={icon.src} alt="Icon" width={200} height={200} className="rounded-full mb-4 mx-auto" />
           </motion.div>
         </Link>
-        <motion.div 
-          animate={{ 
-            opacity: [0, 1,0],
+        <motion.div
+          animate={{
+            opacity: [0, 1, 0],
           }}
-          transition={{ 
-            duration: 15, 
-            ease: "easeInOut", 
+          transition={{
+            duration: 15,
+            ease: "easeInOut",
             repeat: Infinity,
           }}
           className="mb-8"
