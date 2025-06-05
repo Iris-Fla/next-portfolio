@@ -15,8 +15,9 @@ export default function WorksGrid({ data }: { data: any[] }) {
                         whileHover={{
                             boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
                             borderColor: "#3f6212",
+                            rotate: 5,
                         }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ ease: "easeInOut", duration: 0.1 }}
                     >
                         {work.eyecatch && (
                             <div className="relative w-full aspect-[16/9]">
@@ -30,6 +31,7 @@ export default function WorksGrid({ data }: { data: any[] }) {
                                 />
                             </div>
                         )}
+                        <hr className="border-gray-200" />
                         <div className="p-3 flex-1 flex flex-col justify-end items-start text-xs bg-white">
                             <h2 className="font-semibold mb-1">{work.title}</h2>
                             <p className="text-gray-500">

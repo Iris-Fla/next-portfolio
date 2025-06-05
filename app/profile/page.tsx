@@ -83,17 +83,25 @@ export default function Profile() {
                                 rel="noopener noreferrer"
                                 className="text-lime-700 hover:text-gray-800 transition-colors decoration-lime-700 underline-offset-4 underline decoration-2"
                                 aria-label="X (Twitter)">@ithiku_u</Link></p>
-
-                            <div className="bg-gray-50 p-4 rounded-lg mb-8">
-                                <p className="text-gray-700 leading-relaxed">
-                                    Webを中心に、フロントエンドからバックエンドまで幅広く手がけるエンジニアです。<br />
-                                    UI/UXにも興味があり、デザインと技術の両方を活かして、ユーザーに求められるWebサービスを作ることを目指しています。<br />
-                                </p>
+                            
+                                                        {/* 趣味セクション */}
+                            <div className="my-5">
+                                <h2 className="flex items-center text-lg font-semibold text-gray-800 mb-3">
+                                    <Heart className="mr-2 h-5 w-5 text-lime-700" />
+                                    こんなことができる...!
+                                </h2>
+                                <ul className="text-gray-700 list-disc pl-5 ml-1">
+                                    <li>Web制作全般</li>
+                                    <li>デザイン</li>
+                                    <li className="text-gray-300">バックエンド</li>
+                                    <li className="text-gray-300">動画編集</li>
+                                </ul>
                             </div>
+
 
                             {/* 趣味セクション */}
                             <div className="mb-4">
-                                <h2 className="flex items-center text-lg font-semibold text-gray-800 mb-4">
+                                <h2 className="flex items-center text-lg font-semibold text-gray-800 mb-3">
                                     <Heart className="mr-2 h-5 w-5 text-lime-700" />
                                     趣味・好きなもの
                                 </h2>

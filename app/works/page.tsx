@@ -6,7 +6,6 @@ export default async function WorksPage() {
 
     return (
         <div className="px-4 py-8">
-            <h1 className="text-3xl font-bold mb-8">Works</h1>
             <WorksGrid data={data} />
         </div>
     );
