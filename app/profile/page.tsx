@@ -28,7 +28,7 @@ export default function Profile() {
             <svg
                 viewBox="0 0 200 200"
                 xmlns="http://www.w3.org/2000/svg"
-                className="absolute -top-50 -right-70 w-[800px] h-[800px] pointer-events-none -z-1 opacity-80"
+                className="absolute -top-50 -right-70 w-[800px] h-[800px] pointer-events-none -z-1000 opacity-80"
                 aria-hidden="true"
             >
                 <path
@@ -37,16 +37,16 @@ export default function Profile() {
                     transform="translate(100 100)"
                 />
             </svg>
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="absolute top-100 -left-80 w-[800px] h-[800px] pointer-events-none -z-1 opacity-80" aria-hidden="true">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="absolute top-100 -left-80 w-[800px] h-[800px] pointer-events-none -z-1000 opacity-80" aria-hidden="true">
                 <path fill="#35530E" d="M47.5,-47.6C63.5,-31.4,79.9,-15.7,82.8,2.9C85.7,21.4,75,42.9,58.9,57.4C42.9,71.9,21.4,79.5,0.6,79C-20.3,78.4,-40.5,69.6,-56.4,55C-72.3,40.5,-83.9,20.3,-82.6,1.3C-81.4,-17.7,-67.3,-35.4,-51.3,-51.6C-35.4,-67.9,-17.7,-82.6,-1,-81.6C15.7,-80.6,31.4,-63.9,47.5,-47.6Z" transform="translate(100 100)" />
             </svg>
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="absolute top-250 -right-100 w-[800px] h-[800px] pointer-events-none -z-1 opacity-80" aria-hidden="true">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="absolute top-250 -right-100 w-[800px] h-[800px] pointer-events-none -z-1000 opacity-80" aria-hidden="true">
                 <path fill="#35530E" d="M47.5,-47.6C63.5,-31.4,79.9,-15.7,82.8,2.9C85.7,21.4,75,42.9,58.9,57.4C42.9,71.9,21.4,79.5,0.6,79C-20.3,78.4,-40.5,69.6,-56.4,55C-72.3,40.5,-83.9,20.3,-82.6,1.3C-81.4,-17.7,-67.3,-35.4,-51.3,-51.6C-35.4,-67.9,-17.7,-82.6,-1,-81.6C15.7,-80.6,31.4,-63.9,47.5,-47.6Z" transform="translate(100 100)" />
             </svg>
             <svg
                 viewBox="0 0 200 200"
                 xmlns="http://www.w3.org/2000/svg"
-                className="absolute top-400 -left-70 w-[800px] h-[800px] pointer-events-none -z-1 opacity-80"
+                className="absolute top-400 -left-70 w-[800px] h-[800px] pointer-events-none -z-1000 opacity-80"
                 aria-hidden="true"
             >
                 <path
@@ -83,8 +83,8 @@ export default function Profile() {
                                 rel="noopener noreferrer"
                                 className="text-lime-700 hover:text-gray-800 transition-colors decoration-lime-700 underline-offset-4 underline decoration-2"
                                 aria-label="X (Twitter)">@ithiku_u</Link></p>
-                            
-                                                        {/* 趣味セクション */}
+
+                            {/* 趣味セクション */}
                             <div className="my-5">
                                 <h2 className="flex items-center text-lg font-semibold text-gray-800 mb-3">
                                     <Heart className="mr-2 h-5 w-5 text-lime-700" />

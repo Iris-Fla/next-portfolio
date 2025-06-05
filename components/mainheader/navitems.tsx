@@ -11,11 +11,11 @@ export default function NavItem({ href, label, disabled }: NavItemProps) {
   return (
     <motion.div className="relative inline-block" whileHover="hover" initial="rest" animate="rest">
       {disabled ? (
-        <span className="font-medium text-lime-900 hover:text-gray-800 transition-colors duration-300 cursor-not-allowed opacity-60">
+        <span className="font-medium hover:text-lime-900 text-[#3e3a39] transition-colors duration-300 cursor-not-allowed opacity-60">
           {label}
         </span>
       ) : (
-        <Link href={href} className="font-medium text-lime-900 hover:text-gray-800 transition-colors duration-300">
+        <Link href={href} className="font-medium hover:text-lime-900 text-[#3e3a39] transition-colors duration-100">
           {label}
         </Link>
       )}

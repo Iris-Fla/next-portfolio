@@ -10,7 +10,7 @@ export default function MainHeader() {
                 <div className="flex items-center justify-between">
                     {/* サイト名 */}
                     <div className="flex items-center">
-                        <Link href="/" className="text-xl font-bold hover:text-gray-800 text-lime-900 transition-colors duration-300">
+                        <Link href="/" className="text-xl font-bold hover:text-[#3e3a39] text-lime-900 transition-colors duration-300">
                             Iris-Fla
                         </Link>
                     </div>
