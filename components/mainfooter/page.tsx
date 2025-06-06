@@ -2,12 +2,13 @@
 
 import { Book } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function MainFooter() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-transparent py-6 mt-auto">
+        <footer className="bg-transparent py-6 mt-auto border-t-4 border-[#3e3a39] relative">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row items-center justify-between">
                     {/* コピーライト */}
@@ -24,7 +25,7 @@ export default function MainFooter() {
                             href="https://github.com/Iris-Fla"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-lime-900 hover:text-gray-800 transition-colors"
+                            className="hover:text-lime-900 text-[#3e3a39] transition-colors"
                             aria-label="GitHub"
                         >
                             <svg
@@ -42,7 +43,7 @@ export default function MainFooter() {
                             href="https://x.com/Iris_Flandre"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-lime-900 hover:text-gray-800 transition-colors"
+                            className="hover:text-lime-900 text-[#3e3a39] transition-colors"
                             aria-label="X (Twitter)"
                         >              <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -60,13 +61,33 @@ export default function MainFooter() {
                             href="https://github.com/Iris-Fla/next-portfolio"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-lime-900 hover:text-gray-800 transition-colors"
+                            className="hover:text-lime-900 text-[#3e3a39] transition-colors"
                             aria-label="X (Twitter)"
-                        >              
-                        <Book strokeWidth={2} />
+                        >
+                            <Book strokeWidth={2} />
 
                         </Link>
                     </div>
+                </div>
+                <div>
+                    <Image
+                        src="/tent.svg"
+                        alt="テント"
+                        width={80}
+                        height={80}
+                        className="absolute right-0 bottom-22 md:bottom-13 w-50 h-50 z-[-5] pointer-events-none"
+                        aria-hidden="true"
+                        priority
+                    />
+                    <Image
+                        src="/tree.svg"
+                        alt="木"
+                        width={80}
+                        height={80}
+                        className="absolute left-0 bottom-22 md:bottom-13 w-50 h-50 z-[-5] pointer-events-none"
+                        aria-hidden="true"
+                        priority
+                    />
                 </div>
             </div>
         </footer>

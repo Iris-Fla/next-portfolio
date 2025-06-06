@@ -7,6 +7,13 @@
   font-family: var(--font-kiwi-maru);
 }
 
+
+/* 
+#6E8059
+#FEF3E7
+*/
+
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
