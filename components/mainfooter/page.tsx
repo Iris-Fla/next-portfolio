@@ -75,7 +75,7 @@ export default function MainFooter() {
                         alt="テント"
                         width={80}
                         height={80}
-                        className="absolute right-0 bottom-13 w-50 h-50 z-[-5] pointer-events-none"
+                        className="absolute right-0 bottom-22 md:bottom-13 w-50 h-50 z-[-5] pointer-events-none"
                         aria-hidden="true"
                         priority
                     />
@@ -84,7 +84,7 @@ export default function MainFooter() {
                         alt="木"
                         width={80}
                         height={80}
-                        className="absolute left-0 bottom-13 w-50 h-50 z-[-5] pointer-events-none"
+                        className="absolute left-0 bottom-22 md:bottom-13 w-50 h-50 z-[-5] pointer-events-none"
                         aria-hidden="true"
                         priority
                     />

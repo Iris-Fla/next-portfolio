@@ -18,7 +18,7 @@ export default function MainHeader() {
                     {/* デスクトップナビゲーション - md以上で表示 */}
                     <nav className="flex items-center space-x-6">
                         <NavItem href="/profile" label="Profile" />
-                        <NavItem href="/works" label="Works(工事中)"/>
+                        <NavItem href="/works" label="Works"/>
                         <NavItem href="/contact" label="Contact(工事中)" disabled/>
                     </nav>
                 </div>
