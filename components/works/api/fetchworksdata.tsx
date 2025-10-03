@@ -93,3 +93,11 @@ export const fetchWorksData = async (): Promise<ForiioWork[]> => {
   // 制作時期でソートして返す
   return sortByProductionDate(data.works);
 };
+
+/**
+ * 個別の作品データを取得する関数
+ */
+export const fetchWorkById = async (id: string): Promise<ForiioWork | null> => {
+  const works = await fetchWorksData();
+  return works.find(work => work.id.toString() === id) || null;
+};
