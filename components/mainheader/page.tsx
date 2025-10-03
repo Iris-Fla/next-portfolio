@@ -19,7 +19,6 @@ export default function MainHeader() {
                     <nav className="flex items-center space-x-6">
                         <NavItem href="/profile" label="Profile" />
                         <NavItem href="/works" label="Works"/>
-                        <NavItem href="/contact" label="Contact(工事中)" disabled/>
                     </nav>
                 </div>
             </div>
