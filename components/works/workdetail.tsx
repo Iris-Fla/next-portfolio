@@ -1,7 +1,7 @@
 "use client";
 import { ForiioWork } from "./api/fetchworksdata";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
@@ -29,6 +29,20 @@ export default function WorkDetail({ work }: WorkDetailProps) {
         is_mistified: false
       }];
 
+  // 現在選択されている画像のアスペクト比を計算
+  const currentImage = images[selectedImageIndex];
+  const aspectRatio = useMemo(() => {
+    if (!currentImage.width || !currentImage.height) return 16 / 9;
+    return currentImage.width / currentImage.height;
+  }, [currentImage]);
+
+  // 画像の向きを判定
+  const imageOrientation = useMemo(() => {
+    if (aspectRatio > 1.2) return 'landscape'; // 横長
+    if (aspectRatio < 0.8) return 'portrait'; // 縦長
+    return 'square'; // 正方形に近い
+  }, [aspectRatio]);
+
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,24 +61,47 @@ export default function WorkDetail({ work }: WorkDetailProps) {
           {/* 左側: 画像ギャラリー */}
           <div className="space-y-4">
             {/* メイン画像 */}
-            <div className="relative w-full bg-white aspect-[16/9] overflow-hidden shadow-lg">
+            <div className="flex items-center justify-center bg-gray-100 rounded-lg shadow-lg overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={selectedImageIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="relative w-full h-full"
+                  className="relative w-full"
+                  style={{
+                    maxHeight: imageOrientation === 'portrait' ? '1200px' : 'none',
+                  }}
                 >
-                  <Image
-                    src={images[selectedImageIndex].urls.detail}
-                    alt={`${work.title} - ${selectedImageIndex + 1}`}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    priority
-                  />
+                  {imageOrientation === 'portrait' ? (
+                    // 縦長画像: 高さ優先で表示
+                    <div className="flex justify-center">
+                      <div className="relative" style={{ maxHeight: '1200px' }}>
+                        <Image
+                          src={images[selectedImageIndex].urls.detail}
+                          alt={`${work.title} - ${selectedImageIndex + 1}`}
+                          width={currentImage.width}
+                          height={currentImage.height}
+                          className="h-auto max-h-[1200px] w-auto object-contain"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          priority={selectedImageIndex === 0}
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    // 横長・正方形: 通常表示
+                    <div className={imageOrientation === 'landscape' ? 'aspect-[16/9]' : 'aspect-square'}>
+                      <Image
+                        src={images[selectedImageIndex].urls.detail}
+                        alt={`${work.title} - ${selectedImageIndex + 1}`}
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        priority={selectedImageIndex === 0}
+                      />
+                    </div>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -76,7 +113,7 @@ export default function WorkDetail({ work }: WorkDetailProps) {
                   <button
                     key={image.id || index}
                     onClick={() => setSelectedImageIndex(index)}
-                    className={`relative flex-shrink-0 w-24 h-16 overflow-hidden border-2 transition-all ${
+                    className={`relative flex-shrink-0 w-24 h-16 overflow-hidden rounded border-2 transition-all ${
                       selectedImageIndex === index
                         ? "border-lime-800"
                         : "border-gray-300 hover:border-gray-400"
