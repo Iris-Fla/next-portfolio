@@ -9,8 +9,13 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function WorkDetailPage({ params }: { params: { id: string } }) {
-  const work = await fetchWorkById(params.id);
+export default async function WorkDetailPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}) {
+  const { id } = await params;
+  const work = await fetchWorkById(id);
 
   if (!work) {
     notFound();
