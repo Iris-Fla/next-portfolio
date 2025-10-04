@@ -5,7 +5,13 @@ const nextConfig: NextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "images.microcms-assets.io",
+                hostname: "imgx.foriio.com",
+                port: "",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "dyci7co52mbcc.cloudfront.net",
                 port: "",
                 pathname: "/**",
             },

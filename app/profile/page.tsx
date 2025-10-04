@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { toast } from "sonner";
 import Link from "next/link";
 import Image from "next/image";
-import icon from "@/public/ithiku_icon.jpg";
 import PageMotion from "@/components/pagemotion/page";
 import { User, Code, Heart, Mail, Github, Twitter, House, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
@@ -66,7 +65,7 @@ export default function Profile() {
                                 transition={{ duration: 0.5 }}
                                 className="rounded-full border-4 border-white shadow-xl overflow-hidden"
                             >
-                                <Image src={icon} alt="Profile Icon" width={120} height={120} />
+                                <Image src="/ithiku_icon.jpg" alt="Profile Icon" width={120} height={120} />
                             </motion.div>
                         </div>
                     </div>

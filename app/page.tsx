@@ -4,7 +4,6 @@ import { toast } from "sonner";
 import PageMotion from "@/components/pagemotion/page";
 import Link from "next/link";
 import Image from "next/image";
-import icon from "@/public/icon.png";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -81,7 +80,7 @@ export default function Home() {
             >
               \ うわ～ ! /
             </div>
-            <Image src={icon.src} alt="Icon" width={200} height={200} className="rounded-full mb-4 mx-auto" />
+            <Image src="/icon.png" alt="Icon" width={200} height={200} className="rounded-full mb-4 mx-auto" />
           </motion.div>
         </Link>
         <motion.div
