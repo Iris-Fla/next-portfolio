@@ -8,6 +8,25 @@ import PageMotion from "@/components/pagemotion/page";
 import { User, Code, Heart, Mail, Github, Twitter, House, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 
+// アニメーションのバリアントを追加
+const sectionVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+        opacity: 1,
+        y: 0,
+        transition: { delay: i * 0.2, duration: 0.6, type: "spring" }
+    }),
+};
+
+const listItemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: (i: number) => ({
+        opacity: 1,
+        x: 0,
+        transition: { delay: i * 0.15, duration: 0.5 }
+    }),
+};
+
 export default function Profile() {
     const profilemessages = ["にゃんはろ～", "いろいろなことをやっていたり～", "プログラミングは好き?", "見てくれてありがとう～"]
 
@@ -55,14 +74,20 @@ export default function Profile() {
                 />
             </svg>
             <PageMotion>
-                <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+                <motion.div
+                    className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden"
+                    initial="hidden"
+                    animate="visible"
+                    variants={sectionVariants}
+                    custom={0}
+                >
                     {/* ヘッダー部分 */}
                     <div className="bg-lime-800 h-32 relative">
                         <div className="absolute -bottom-16 left-8">
                             <motion.div
-                                initial={{ scale: 0.8, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                transition={{ duration: 0.5 }}
+                                initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
+                                animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                                transition={{ duration: 0.7, type: "spring" }}
                                 className="rounded-full border-4 border-white shadow-xl overflow-hidden"
                             >
                                 <Image src="/ithiku_icon.jpg" alt="Profile Icon" width={120} height={120} />
@@ -73,9 +98,10 @@ export default function Profile() {
                     {/* プロフィール情報 */}
                     <div className="pt-20 px-8 pb-8">
                         <motion.div
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.2, duration: 0.5 }}
+                            initial="hidden"
+                            animate="visible"
+                            variants={sectionVariants}
+                            custom={1}
                         >
                             <h1 className="text-2xl font-bold text-gray-800 mb-1">める（Iris-Fla）</h1>
                             <p className="text-lime-700 font-medium mb-4">イラスト:<Link href="https://x.com/ithiku_u" target="_blank"
@@ -90,38 +116,66 @@ export default function Profile() {
                                     こんなことができる...!
                                 </h2>
                                 <ul className="text-gray-700 list-disc pl-5 ml-1">
-                                    <li>Web制作全般</li>
-                                    <li>デザイン</li>
-                                    <li className="text-gray-300">バックエンド</li>
-                                    <li className="text-gray-300">動画編集</li>
+                                    {["Web制作全般", "デザイン", "バックエンド", "動画編集"].map((item, i) => (
+                                        <motion.li
+                                            key={item}
+                                            variants={listItemVariants}
+                                            initial="hidden"
+                                            animate="visible"
+                                            custom={i}
+                                            className={i > 1 ? "text-gray-300" : ""}
+                                        >
+                                            {item}
+                                        </motion.li>
+                                    ))}
                                 </ul>
                             </div>
 
 
-                            {/* 趣味セクション */}
+                            {/* 趣味・好きなもの */}
                             <div className="mb-4">
                                 <h2 className="flex items-center text-lg font-semibold text-gray-800 mb-3">
                                     <Heart className="mr-2 h-5 w-5 text-lime-700" />
                                     趣味・好きなもの
                                 </h2>
                                 <ul className="text-gray-700 list-disc pl-5 ml-1">
-                                    <li>ラーメン<span className="text-lime-700">(とんこつ)</span></li>
-                                    <li>ゲーム全般</li>
-                                    <li>散策</li>
-                                    <li>雑談</li>
-                                    <li>イラスト<span className="text-lime-700">(見る方)</span></li>
+                                    {[
+                                        <>ラーメン<span className="text-lime-700">(とんこつ)</span></>,
+                                        "ゲーム全般",
+                                        "散策",
+                                        "雑談",
+                                        <>イラスト<span className="text-lime-700">(見る方)</span></>
+                                    ].map((item, i) => (
+                                        <motion.li
+                                            key={i}
+                                            variants={listItemVariants}
+                                            initial="hidden"
+                                            animate="visible"
+                                            custom={i}
+                                        >
+                                            {item}
+                                        </motion.li>
+                                    ))}
                                 </ul>
                             </div>
                         </motion.div>
                     </div>
-                </div>
-                <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden mt-10">
+                </motion.div>
 
+                {/* 下のセクションも同様にアニメーション追加 */}
+                <motion.div
+                    className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden mt-10"
+                    initial="hidden"
+                    animate="visible"
+                    variants={sectionVariants}
+                    custom={2}
+                >
                     <div className="pt-10 px-8 pb-8">
                         <motion.div
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.2, duration: 0.5 }}
+                            initial="hidden"
+                            animate="visible"
+                            variants={sectionVariants}
+                            custom={3}
                         >
                             <h2 className="text-2xl font-semibold text-gray-800 mb-1">活動記録</h2>
                             <p className="text-lime-700 font-medium mb-4"><Link
@@ -258,7 +312,7 @@ export default function Profile() {
                             </div>
                         </motion.div>
                     </div>
-                </div>
+                </motion.div>
             </PageMotion>
         </div>
     );
