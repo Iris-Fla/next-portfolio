@@ -16,7 +16,7 @@ export default function MainHeader() {
                     </div>
 
                     {/* デスクトップナビゲーション - md以上で表示 */}
-                    <nav className="flex items-center space-x-6">
+                    <nav className="flex items-center space-x-6 ">
                         <NavItem href="/profile" label="Profile" />
                         <NavItem href="/works" label="Works"/>
                     </nav>

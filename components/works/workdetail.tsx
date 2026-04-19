@@ -1,7 +1,7 @@
 "use client";
 import { ForiioWork } from "./api/fetchworksdata";
 import Image from "next/image";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
@@ -11,6 +11,8 @@ interface WorkDetailProps {
 
 export default function WorkDetail({ work }: WorkDetailProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isMainImageLoading, setIsMainImageLoading] = useState(true);
+  const [loadedThumbnails, setLoadedThumbnails] = useState<Record<number, boolean>>({});
 
   // 画像が存在しない場合はサムネイルのみを表示
   const images = work.images && work.images.length > 0 
@@ -43,6 +45,10 @@ export default function WorkDetail({ work }: WorkDetailProps) {
     return 'square'; // 正方形に近い
   }, [aspectRatio]);
 
+  useEffect(() => {
+    setIsMainImageLoading(true);
+  }, [selectedImageIndex]);
+
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,11 +75,15 @@ export default function WorkDetail({ work }: WorkDetailProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="relative w-full"
+                  className="relative w-full min-h-[280px]"
                   style={{
                     maxHeight: imageOrientation === 'portrait' ? '1200px' : 'none',
                   }}
                 >
+                  {isMainImageLoading && (
+                    <div className="absolute inset-0 z-10 animate-pulse bg-gradient-to-br from-lime-100 via-lime-50 to-amber-100" />
+                  )}
+
                   {imageOrientation === 'portrait' ? (
                     // 縦長画像: 高さ優先で表示
                     <div className="flex justify-center">
@@ -83,9 +93,12 @@ export default function WorkDetail({ work }: WorkDetailProps) {
                           alt={`${work.title} - ${selectedImageIndex + 1}`}
                           width={currentImage.width}
                           height={currentImage.height}
-                          className="h-auto max-h-[1200px] w-auto object-contain"
+                          className={`h-auto max-h-[1200px] w-auto object-contain transition-opacity duration-300 ${
+                            isMainImageLoading ? "opacity-0" : "opacity-100"
+                          }`}
                           sizes="(max-width: 1024px) 100vw, 50vw"
                           priority={selectedImageIndex === 0}
+                          onLoad={() => setIsMainImageLoading(false)}
                         />
                       </div>
                     </div>
@@ -96,9 +109,12 @@ export default function WorkDetail({ work }: WorkDetailProps) {
                         src={images[selectedImageIndex].urls.detail}
                         alt={`${work.title} - ${selectedImageIndex + 1}`}
                         fill
-                        className="object-contain"
+                        className={`object-contain transition-opacity duration-300 ${
+                          isMainImageLoading ? "opacity-0" : "opacity-100"
+                        }`}
                         sizes="(max-width: 1024px) 100vw, 50vw"
                         priority={selectedImageIndex === 0}
+                        onLoad={() => setIsMainImageLoading(false)}
                       />
                     </div>
                   )}
@@ -123,9 +139,17 @@ export default function WorkDetail({ work }: WorkDetailProps) {
                       src={image.urls.list}
                       alt={`${work.title} サムネイル ${index + 1}`}
                       fill
-                      className="object-cover"
+                      className={`object-cover transition-opacity duration-300 ${
+                        loadedThumbnails[index] ? "opacity-100" : "opacity-0"
+                      }`}
                       sizes="96px"
+                      onLoad={() =>
+                        setLoadedThumbnails((prev) => ({ ...prev, [index]: true }))
+                      }
                     />
+                    {!loadedThumbnails[index] && (
+                      <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-lime-100 via-lime-50 to-amber-100" />
+                    )}
                   </button>
                 ))}
               </div>

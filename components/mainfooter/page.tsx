@@ -79,15 +79,6 @@ export default function MainFooter() {
                         aria-hidden="true"
                         priority
                     />
-                    <Image
-                        src="/tree.svg"
-                        alt="木"
-                        width={80}
-                        height={80}
-                        className="absolute left-0 bottom-22 md:bottom-13 w-50 h-50 z-[-5] pointer-events-none"
-                        aria-hidden="true"
-                        priority
-                    />
                 </div>
             </div>
         </footer>
