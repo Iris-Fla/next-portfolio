@@ -118,13 +118,14 @@ export default function Profile() {
                 initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
                 animate={{ scale: 1, opacity: 1, rotate: 0 }}
                 transition={{ duration: 0.7, type: "spring" }}
-                className="rounded-full border-4 border-white shadow-xl overflow-hidden"
+                className="rounded-full border-4 border-white shadow-xl overflow-hidden w-[128px] h-[128px]"
               >
                 <Image
                   src="/ithiku_icon.jpg"
                   alt="Profile Icon"
-                  width={120}
-                  height={120}
+                  width={500}
+                  height={500}
+                  className="h-full w-full object-cover"
                 />
               </motion.div>
             </div>
