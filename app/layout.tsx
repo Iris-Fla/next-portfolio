@@ -3,6 +3,7 @@ import { Kiwi_Maru } from "next/font/google";
 import MainHeader from "@/components/mainheader/page";
 import MainFooter from "@/components/mainfooter/page";
 import { Toaster }from "@/components/ui/sonner";
+import { buildMetadata } from "@/lib/metadata";
 import "./globals.css";
 
 const kiwiMaru = Kiwi_Maru({
@@ -12,8 +13,11 @@ const kiwiMaru = Kiwi_Maru({
 });
 
 export const metadata: Metadata = {
-  title: "Iris-Fla",
-  description: "ふわふわとしたサイト...の予定",
+  ...buildMetadata({
+    title: "Iris-Fla",
+    description: "ふわふわとしたサイト...の予定",
+    path: "/",
+  }),
 };
 
 export default function RootLayout({
@@ -22,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body
         className={kiwiMaru.className}
       >
