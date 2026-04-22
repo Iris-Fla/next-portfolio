@@ -33,11 +33,13 @@ export async function generateMetadata({
     });
   }
 
+  const metadataImage = work.images?.[0]?.urls.detail || work.thumbnail;
+
   return buildMetadata({
     title: `${work.title} | Works | Iris-Fla`,
     description: excerpt(work.description || "作品詳細ページです。"),
     path: `/works/${id}`,
-    image: work.images?.[0]?.urls.detail || work.thumbnail,
+    ...(metadataImage ? { image: metadataImage } : {}),
   });
 }
 
