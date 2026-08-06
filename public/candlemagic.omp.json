@@ -1,0 +1,64 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "final_space": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "session",
+          "style": "diamond",
+          "leading_diamond": "",
+          "foreground": "#221818",
+          "background": "#AB748E",
+          "template": " {{ .UserName }} "
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "│",
+          "foreground": "#221818",
+          "background": "#D4AFAF",
+          "properties": {
+            "style": "agnoster_short",
+            "max_depth": 2
+          },
+          "template": " {{ path .Path .Location }} "
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "│",
+          "foreground": "#221818",
+          "background": "#9FBF8F",
+          "background_templates": [
+            "{{ if gt .Behind 0 }}#DA6D81{{ end }}",
+            "{{ if .Working.Changed }}#EBCF7D{{ end }}"
+          ],
+          "properties": {
+            "fetch_status": true,
+            "branch_icon": "",
+            "native_fallback": true
+          },
+          "template": " {{ .HEAD }}{{ if .Working.Changed }} ● {{ add .Working.Added .Working.Modified .Working.Deleted .Working.Untracked }}{{ end }}{{ if gt .Behind 0 }} ↓{{ .Behind }}{{ end }} "
+        },
+        {
+          "type": "status",
+          "style": "diamond",
+          "trailing_diamond": "",
+          "foreground": "#221818",
+          "background": "#EBCF7D",
+          "background_templates": [
+            "{{ if gt .Code 0 }}#DA6D81{{ end }}"
+          ],
+          "properties": {
+            "always_enabled": true
+          },
+          "template": "  "
+        }
+      ]
+    }
+  ]
+}
